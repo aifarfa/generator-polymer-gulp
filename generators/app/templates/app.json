@@ -1,0 +1,9 @@
+{
+    "name": "<%= name %>",
+    "displayName": "<%= name %>",
+    "description": "",
+    "type": "WebApp",
+    "version": "0.0.1",
+    "defaultPage": "index.html",
+    "defaultPlatform": "NodeJS"
+}

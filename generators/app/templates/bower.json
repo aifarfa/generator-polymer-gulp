@@ -1,7 +1,7 @@
 {
   "name": "<%= name %>",
   "description": "",
-  "main": "app.js",
+  "main": "index.html",
   "authors": [
     "<%= authors %>"
   ],

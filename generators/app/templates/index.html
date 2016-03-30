@@ -1,8 +1,17 @@
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
-      <h2>Hey, <%= title %> just works!</h2>
-  </body>
+
+<head>
+    <title><%= name %></title>
+    <link rel="import" href="public/scripts/components/sample-element.html">
+</head>
+<body>
+    <div>
+        <h2><%= name %> just works.</h2>
+        <div>
+            <h3>Polymer components</h3>
+            <sample-element></sample-element>
+        </div>
+    </div>
+</body>
 </html>
