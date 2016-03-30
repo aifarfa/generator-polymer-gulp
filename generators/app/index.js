@@ -92,15 +92,18 @@ module.exports = generator.Base.extend({
     return [
       'gulp',
       'gulp-mocha',
+      'gulp-istanbul',
+      'gulp-typescript',
+      'gulp-watch',
+      'istanbul',
+      'run-sequence',
       'mocha',
       'chai',
       'sinon',
-      'gulp-istanbul',
-      'gulp-typescript',
+      'polyserve',
       'web-component-tester',
       'web-component-tester-istanbul',
-      'istanbul',
-      'polyserve'
+      'browser-sync'
     ];
   },
 
