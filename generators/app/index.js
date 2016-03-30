@@ -34,6 +34,7 @@ module.exports = generator.Base.extend({
       'default': ''
     }], function (answers) {
       this.appname = answers.appname;
+      this.authors = answers.authors;
       done();
     }.bind(this));
   },
@@ -82,7 +83,7 @@ module.exports = generator.Base.extend({
 
   install: {
     npm: function () {
-      this.log('installing node_modules..');
+      this.log('installing dependencies..');
       this.npmInstall([
         'gulp',
         'gulp-mocha',
@@ -90,6 +91,7 @@ module.exports = generator.Base.extend({
         'chai',
         'sinon',
         'gulp-istanbul',
+        'gulp-typescript',
         'web-component-tester',
         'web-component-tester-istanbul',
         'istanbul',
@@ -99,7 +101,6 @@ module.exports = generator.Base.extend({
       });
     },
     bower: function () {
-      this.log('installing bower_components..');
       this.bowerInstall(['polymer'], {
         save: true
       });
