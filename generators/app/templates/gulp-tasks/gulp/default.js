@@ -4,7 +4,7 @@ const appJson = require('../app.json');
 const browserSync = require('browser-sync');
 const gulp = require('gulp');
 const watch = require('gulp-watch');
-const run = require('run-sequence');
+// const run = require('run-sequence');
 
 gulp.task('build', ['typescript'], (done) => {
   done();
@@ -27,7 +27,8 @@ gulp.task('watch', () => {
     './public/scripts/**/*.js',
     './public/css/**/*.css'
   ], function (file) {
-    run([], browserSync.reload);
+    // run([], browserSync.reload);
+    browserSync.reload();
   });
 
 });
