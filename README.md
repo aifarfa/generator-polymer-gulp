@@ -1,2 +1,2 @@
-# generator-polymer-node
-simple polymer web-components app templates for yeoman generator
+# generator-polymer-gulp
+simple polymer web-components templates for yeoman generator
