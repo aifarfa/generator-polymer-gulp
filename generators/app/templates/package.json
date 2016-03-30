@@ -1,0 +1,11 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"TBD\"",
+    "start": "./node_modules/.bin/polyserve"
+  },
+  "license": "ISC"
+}

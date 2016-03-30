@@ -1,0 +1,21 @@
+{
+  "name": "<%= name %>",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "<%= authors %>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

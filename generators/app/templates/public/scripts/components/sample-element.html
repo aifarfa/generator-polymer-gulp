@@ -1,0 +1,34 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="sample-element">
+    <template>
+        <div>
+            <input id="textInput" value="{{value::input}}" placeholder="[[placeholder]]" />
+        </div>
+        <div>value: {{value}}</div>
+    </template>
+    <script>
+    Polymer({
+        is: 'sample-element',
+
+        properties: {
+            value: {
+                type: String,
+                notify: true,
+                observer: 'valueChanged'
+            },
+            placeholder: {
+                type: String,
+                notify: true
+            }
+        },
+
+        ready: function() {
+            this.placeholder = "ready..";
+        },
+
+        valueChanged: function(val, old) {
+            // console.log('value changed:' + val);
+        }
+    })
+    </script>
+</dom-module>

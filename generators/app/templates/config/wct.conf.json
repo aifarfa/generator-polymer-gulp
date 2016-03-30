@@ -1,0 +1,12 @@
+{
+  "expanded": true,
+  "plugins": {
+    "local": {
+      "browsers": ["chrome"]
+    }
+  },
+  "sauce": false,
+  "skipSeleniumInstall": true,
+  "suites": ["test/wct/"],
+  "verbose": false
+}

@@ -1,0 +1,24 @@
+{
+  "name": "generator-polymer-node",
+  "version": "0.0.1",
+  "description": "yeoman generator for polymer app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yeoman",
+    "yo",
+    "generator"
+  ],
+  "author": "pasit.r",
+  "license": "ISC",
+  "files": [
+    "generators/app",
+    "generators/router"
+  ],
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "yeoman-generator": "^0.22.5"
+  }
+}
