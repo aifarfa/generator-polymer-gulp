@@ -5,7 +5,7 @@ const _ = require('lodash');
 
 module.exports = generator.Base.extend({
 
-  constructor: function() {
+  constructor: function () {
     generator.Base.apply(this, arguments);
     // This makes `appname` a required argument.
     this.argument('appname', {
@@ -16,11 +16,11 @@ module.exports = generator.Base.extend({
     this.appname = _.camelCase(this.appname);
   },
 
-  init: function() {
+  init: function () {
     this.log('initializing..');
   },
 
-  prompting: function() {
+  prompting: function () {
     var done = this.async();
     this.prompt([{
       'type': 'input',
@@ -32,51 +32,41 @@ module.exports = generator.Base.extend({
       'name': 'authors',
       'message': 'your team name?',
       'default': ''
-    }], function(answers) {
+    }], function (answers) {
       this.appname = answers.appname;
       done();
     }.bind(this));
   },
 
-  writing: function() {
-    this._copyEditorConfig();
+  writing: function () {
     this._copyAppFiles();
-    this._copyHtmlTemplate({
-      title: this.appname
-    });
+    this._writeHtmlTemplate();
     this._writeAppJson();
   },
 
-  _copyEditorConfig: function() {
-    this.log('writing editor config..');
-    this.directory('config', './');
-  },
-
-  _copyAppFiles: function() {
-    this.log('writing application files..');
+  _copyAppFiles: function () {
+    this.directory('config', './'); // .editorconfig, .eslint and etc.
+    this.directory('gulp-tasks', './'); // gulpfile
     this.directory('public', 'public');
     this.directory('services', 'services');
-    this.directory('test/service', 'test/service');
-    this.directory('test/wct', 'test/wct');
+    this.directory('test', 'test');
   },
 
-  _copyHtmlTemplate: function(context) {
-    this.log('writing html template..');
+  _writeHtmlTemplate: function (context) {
     this.fs.copyTpl(
       this.templatePath('index.html'),
-      this.destinationPath('index.html'),
-      context
+      this.destinationPath('index.html'), {
+        title: this.appname
+      }
     );
   },
 
-  _writeAppJson: function() {
-    this.log('writing app json');
-
+  _writeAppJson: function () {
     const context = {
-        name: this.appname,
-        authors: this.authors
-      }
-      // npm package.json
+      name: this.appname,
+      authors: this.authors
+    };
+    // npm package.json
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
@@ -87,18 +77,28 @@ module.exports = generator.Base.extend({
       this.templatePath('bower.json'),
       this.destinationPath('bower.json'),
       context
-    )
+    );
   },
 
   install: {
-    npm: function() {
-      const dependencies = ['mocha', 'chai', 'sinon', 'polyserve'];
+    npm: function () {
       this.log('installing node_modules..');
-      this.npmInstall(dependencies, {
+      this.npmInstall([
+        'gulp',
+        'gulp-mocha',
+        'mocha',
+        'chai',
+        'sinon',
+        'gulp-istanbul',
+        'web-component-tester',
+        'web-component-tester-istanbul',
+        'istanbul',
+        'polyserve'
+      ], {
         saveDev: true
       });
     },
-    bower: function() {
+    bower: function () {
       this.log('installing bower_components..');
       this.bowerInstall(['polymer'], {
         save: true
@@ -110,7 +110,7 @@ module.exports = generator.Base.extend({
   },
 
   end: {
-    finalize: function() {
+    finalize: function () {
       this.log('finally, done!');
     }
   }
