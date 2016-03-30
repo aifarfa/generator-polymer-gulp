@@ -57,7 +57,7 @@ module.exports = generator.Base.extend({
     this.fs.copyTpl(
       this.templatePath('index.html'),
       this.destinationPath('index.html'), {
-        title: this.appname
+        name: this.appname
       }
     );
   },
@@ -67,36 +67,14 @@ module.exports = generator.Base.extend({
       name: this.appname,
       authors: this.authors
     };
-    // npm package.json
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'),
-      context
-    );
-    // bower.json
-    this.fs.copyTpl(
-      this.templatePath('bower.json'),
-      this.destinationPath('bower.json'),
-      context
-    );
+    // npm package.json, bower.json, app.json
+    this.fs.copyTpl(this.templatePath('*.json'), './', context);
   },
 
   install: {
     npm: function () {
       this.log('installing dependencies..');
-      this.npmInstall([
-        'gulp',
-        'gulp-mocha',
-        'mocha',
-        'chai',
-        'sinon',
-        'gulp-istanbul',
-        'gulp-typescript',
-        'web-component-tester',
-        'web-component-tester-istanbul',
-        'istanbul',
-        'polyserve'
-      ], {
+      this.npmInstall(this._dependencies(), {
         saveDev: true
       });
     },
@@ -108,6 +86,22 @@ module.exports = generator.Base.extend({
         saveDev: true
       });
     }
+  },
+
+  _dependencies: function () {
+    return [
+      'gulp',
+      'gulp-mocha',
+      'mocha',
+      'chai',
+      'sinon',
+      'gulp-istanbul',
+      'gulp-typescript',
+      'web-component-tester',
+      'web-component-tester-istanbul',
+      'istanbul',
+      'polyserve'
+    ];
   },
 
   end: {
